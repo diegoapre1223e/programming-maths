@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post · Programming & Maths</title>
+    <meta name="description" content="Entrada de blog en Markdown con código resaltado e interactividad." />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/github-dark.min.css"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="./index.html">Programming & Maths</a>
+        <nav class="nav-links" aria-label="Navegación principal">
+          <a href="./index.html">Posts</a>
+          <a href="./about.html">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container post-layout">
+      <a class="back-link" href="./index.html">← Volver a posts</a>
+      <article id="post-content" class="post-content" aria-live="polite"></article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">Markdown + Highlight.js + scripts por post</div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/13.0.2/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/highlight.min.js"></script>
+    <script src="./assets/js/config.js"></script>
+    <script src="./assets/js/markdown.js"></script>
+    <script src="./assets/js/post.js" defer></script>
+  </body>
+</html>
