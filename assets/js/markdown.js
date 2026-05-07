@@ -5,8 +5,9 @@
     const isTokenObject = codeOrToken && typeof codeOrToken === 'object';
     const text = isTokenObject ? (codeOrToken.text ?? '') : (codeOrToken ?? '');
     const language = String(isTokenObject ? (codeOrToken.lang ?? '') : infostring).trim();
-    const runnableLanguage = language.replace(/\brunnable\b/g, '').trim();
-    const languageForHighlight = runnableLanguage || (language.includes('runnable') ? 'javascript' : language);
+    const isRunnable = language.includes('runnable');
+    const baseLanguage = language.replace(/\brunnable\b/g, '').trim();
+    const languageForHighlight = baseLanguage || (isRunnable ? 'javascript' : language);
     const validLang = languageForHighlight && hljs.getLanguage(languageForHighlight);
     const highlighted = validLang
       ? hljs.highlight(String(text), { language: languageForHighlight }).value
@@ -14,11 +15,11 @@
 
     const baseBlock = `<pre><code class="hljs language-${languageForHighlight}">${highlighted}</code></pre>`;
 
-    if (!language.includes('runnable')) {
+    if (!isRunnable) {
       return baseBlock;
     }
 
-    const cleanedLanguage = runnableLanguage || 'javascript';
+    const cleanedLanguage = baseLanguage || 'javascript';
 
     return `
       ${baseBlock}
