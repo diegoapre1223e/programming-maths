@@ -1,20 +1,25 @@
 (function setupMarkdownRenderer() {
   const markedRenderer = new marked.Renderer();
 
-  markedRenderer.code = ({ text, lang }) => {
-    const language = lang || '';
-    const validLang = language && hljs.getLanguage(language);
+  markedRenderer.code = (codeOrToken, infostring = '') => {
+    const isTokenObject = codeOrToken && typeof codeOrToken === 'object';
+    const text = isTokenObject ? (codeOrToken.text ?? '') : (codeOrToken ?? '');
+    const language = String(isTokenObject ? (codeOrToken.lang ?? '') : infostring).trim();
+    const isRunnable = language.includes('runnable');
+    const baseLanguage = language.replace(/\brunnable\b/g, '').trim();
+    const languageForHighlight = baseLanguage || (isRunnable ? 'javascript' : language);
+    const validLang = languageForHighlight && hljs.getLanguage(languageForHighlight);
     const highlighted = validLang
-      ? hljs.highlight(text, { language }).value
-      : hljs.highlightAuto(text).value;
+      ? hljs.highlight(String(text), { language: languageForHighlight }).value
+      : hljs.highlightAuto(String(text)).value;
 
-    const baseBlock = `<pre><code class="hljs language-${language}">${highlighted}</code></pre>`;
+    const baseBlock = `<pre><code class="hljs language-${languageForHighlight}">${highlighted}</code></pre>`;
 
-    if (!language.includes('runnable')) {
+    if (!isRunnable) {
       return baseBlock;
     }
 
-    const cleanedLanguage = language.replace('runnable', '').trim() || 'javascript';
+    const cleanedLanguage = baseLanguage || 'javascript';
 
     return `
       ${baseBlock}
