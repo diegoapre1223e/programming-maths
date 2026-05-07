@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About · Programming & Maths</title>
+    <meta name="description" content="Cómo está organizada la web para crear posts en Markdown." />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="./index.html">Programming & Maths</a>
+        <nav class="nav-links" aria-label="Navegación principal">
+          <a href="./index.html">Posts</a>
+          <a href="./about.html" aria-current="page">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container prose">
+      <h1>About</h1>
+      <p>
+        Esta base está pensada para que escribas entradas en Markdown sin tocar HTML de cada post.
+      </p>
+
+      <h2>Estructura rápida</h2>
+      <ul>
+        <li><code>/posts/index.json</code>: índice de entradas.</li>
+        <li><code>/posts/*.md</code>: contenido de cada post.</li>
+        <li><code>/posts/scripts/*.js</code>: scripts opcionales por post (interactividad).</li>
+        <li><code>/assets/js</code>: lógica del sitio (listado, parseo Markdown, render de post).</li>
+      </ul>
+
+      <h2>Preparado para visualizaciones</h2>
+      <p>
+        Puedes cargar librerías 2D/3D (como Three.js) desde un script de post sin cambiar la arquitectura.
+      </p>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">Arquitectura clara y extensible para aprender</div>
+    </footer>
+  </body>
+</html>

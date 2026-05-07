@@ -1,0 +1,10 @@
+[
+  {
+    "slug": "bienvenida",
+    "title": "Bienvenida al blog",
+    "description": "Post de ejemplo para validar estructura, Markdown y código runnable.",
+    "date": "2026-05-07",
+    "file": "bienvenida.md",
+    "script": "scripts/bienvenida.js"
+  }
+]
